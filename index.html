@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="0; url=/uk/" />
+    <link rel="canonical" href="/uk/" />
+    <title>Essenta PRO</title>
+    <script>
+      (function () {
+        var allowed = ["uk","en","hy","ka","pl"];
+        var target = 'uk';
+        try {
+          var saved = localStorage.getItem('NEXT_LOCALE');
+          if (saved && allowed.indexOf(saved) > -1) target = saved;
+        } catch (e) {}
+        location.replace('/' + target + '/');
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="/uk/">Continue to Essenta PRO</a>
+  </body>
+</html>
