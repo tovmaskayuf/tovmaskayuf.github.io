@@ -42,4 +42,74 @@
 .social-btn{display:inline-flex;align-items:center;justify-content:center;height:2.75rem;width:2.75rem;border-radius:9999px;border:1px solid rgb(255 255 255/.3);color:#fff;transition:background-color .2s,border-color .2s}
 .social-btn:hover{background:rgb(255 255 255/.12);border-color:rgb(255 255 255/.6)}
 .social-btn svg{height:1.15rem;width:1.15rem;fill:none;stroke:currentColor}
+
+/* ------------------------------------------------------------------
+   Phones. Two separate problems made the page unusable below ~640px.
+
+   1. The type ramp bottomed out at desktop-ish sizes (display 44px,
+      title 40px) so a heading could eat most of a 390px screen and push
+      the buttons under it off the fold. The ramps below meet the old
+      values at the breakpoint, so nothing jumps at 640px.
+
+   2. The scroll-driven entry animations translate in fixed rem amounts
+      tuned for a wide viewport — up to -32rem (-512px), wider than the
+      phone itself — over ranges up to 980px, longer than the viewport is
+      tall. The result was blocks sitting half off-screen and washed out
+      at exactly the scroll position you'd read them at. On small screens
+      they become a short vertical fade instead.
+   ------------------------------------------------------------------ */
+@media (max-width:640px){
+  :root{
+    --text-display:clamp(1.9rem,8.2vw,2.75rem);
+    --text-title:clamp(1.75rem,7vw,2.5rem);
+    --text-heading:clamp(1.3rem,5.2vw,1.6rem);
+    --text-lead:clamp(1rem,4.3vw,1.15rem);
+  }
+  @keyframes reveal-in{0%{opacity:0;transform:translateY(1.25rem)}to{opacity:1;transform:none}}
+  @keyframes reveal-word{0%{opacity:0;transform:translateY(.5em)}to{opacity:1;transform:none}}
+  @keyframes stack-from-left{0%{opacity:0;transform:translateY(1rem)}to{opacity:1;transform:none}}
+  @keyframes stack-from-right{0%{opacity:0;transform:translateY(1rem)}to{opacity:1;transform:none}}
+  @keyframes slide-from-left{0%{opacity:0;transform:translateY(1.25rem)}to{opacity:1;transform:none}}
+  @keyframes slide-from-right{0%{opacity:0;transform:translateY(1.25rem)}to{opacity:1;transform:none}}
+  @keyframes lift-in{0%{opacity:0;transform:translateY(1.5rem)}to{opacity:1;transform:none}}
+  @keyframes wipe-in{0%{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+
+  .reveal{animation-range:20px 260px!important}
+  .reveal-stagger>*{animation-range:20px 260px!important}
+  .reveal-stagger>:nth-child(2){animation-range:50px 290px!important}
+  .reveal-stagger>:nth-child(3){animation-range:80px 320px!important}
+  .reveal-stagger>:nth-child(n+4){animation-range:110px 350px!important}
+  .reveal-words>span{animation-range:20px 200px!important}
+  .reveal-words>span:nth-child(n+2){animation-range:45px 225px!important}
+  .slide-from-left,.slide-from-right{animation-range:20px 300px!important}
+  .lift-in{animation-range:20px 280px!important}
+  .wipe-in{animation-range:20px 200px!important}
+  .meter-fill{animation-range:20px 280px!important}
+  .rule-draw{animation-range:20px 200px!important}
+
+  /* Both floating controls sit on top of body copy on a narrow screen —
+     the viewport-width toggle was landing on the quiz's "Далі" button. */
+  .to-top{inset-inline-end:.75rem;inset-block-end:.75rem;height:2.5rem;width:2.5rem}
+  .fixed.bottom-4.left-4{inset-block-end:.75rem;inset-inline-start:.75rem;height:2.5rem;width:2.5rem}
+
+  /* Stacked into one column, the approved product copy runs long enough to
+     push the pack shot a full screen below the fold. Lead with the photo. */
+  .product-band>div:first-child>.copy-panel{order:2}
+  .product-band>div:first-child>.slide-from-right{order:1}
+
+  /* The dropdown is a fixed 14rem anchored to the menu button rather than to
+     the viewport, so on a narrow phone it hung ~30px off the left edge once
+     opened. Pin it to the viewport under the (80px tall) header instead;
+     the existing mt-3 supplies the gap. */
+  .nav-menu>div{position:fixed;inset-inline:.75rem;top:5rem;width:auto;max-width:none}
+}
+
+/* Small phones (iPhone SE and down): the logo, menu button and language
+   select together are wider than the viewport, which was the one thing
+   still forcing a horizontal scroll. */
+@media (max-width:380px){
+  header>div{padding-inline:.75rem}
+  header a[href$="#top"]{width:6.25rem}
+  header select{font-size:.8125rem;padding-inline-start:.55rem;padding-inline-end:1.55rem}
+}
 /*== essenta-ua-revision end ==*/
