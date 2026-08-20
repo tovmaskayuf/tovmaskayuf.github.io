@@ -69,10 +69,23 @@ after scrolling to a section, or neutralise the animations first.
 The bundled Chromium has **no H.264 support**, so `.mp4` playback cannot be verified locally —
 every video fails there, including ones that are fine. Check the encode with `ffprobe` instead.
 
-⚠ **It also ships no Georgian or Armenian locale data, and that fakes a React #418 on `ka` and
-`hy`.** `Intl.DateTimeFormat('ka', …)` returns "November 5" in that browser where Node returns
-"5 ნოემბერი", so the tube-life date the server rendered and the one it hydrates with disagree —
-on those two pages only. A real visitor's Chrome has the full ICU and matches. Confirm before
-chasing it: `new Intl.DateTimeFormat('ka', { day: 'numeric', month: 'long' }).format(new
-Date())` in the same browser. `uk`, `en`, `pl`, `lv` and `lt` are unaffected, so a #418 there
-is real.
+⚠ **It also ships no Georgian or Armenian locale data, and that fakes TWO failures on `ka` and
+`hy` — a React #418 AND twelve broken gallery images.** `Intl.DateTimeFormat('ka', …)` returns
+"November 5" in that browser where Node returns "5 ნოემბერი", so the tube-life date the server
+rendered and the one it hydrates with disagree. React then throws out the server markup and
+re-renders the tree, and the twelve product stills inside the disclosures (`-a.jpg`, `-b.jpg`)
+come back with `naturalWidth === 0` — which reads exactly like missing files. Nothing is
+missing: no request 404s, and the same files load on the other five languages.
+
+**Confirm it before chasing either symptom**, because the fix for a real one is nowhere near
+here:
+
+```js
+new Intl.DateTimeFormat('ka', { day: 'numeric', month: 'long' }).format(new Date());
+// this browser → "November 5"   ·   any real visitor's → "5 ნოემბერი"
+```
+
+Hand that browser the month names it lacks — patch `Intl.DateTimeFormat` in an init script so
+`ka` formats the way Node did — and both symptoms vanish together: no page error, no broken
+image. `uk`, `en`, `pl`, `lv` and `lt` are unaffected, so a #418 or a broken still THERE is
+real and worth chasing.
