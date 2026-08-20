@@ -68,3 +68,11 @@ after scrolling to a section, or neutralise the animations first.
 
 The bundled Chromium has **no H.264 support**, so `.mp4` playback cannot be verified locally —
 every video fails there, including ones that are fine. Check the encode with `ffprobe` instead.
+
+⚠ **It also ships no Georgian or Armenian locale data, and that fakes a React #418 on `ka` and
+`hy`.** `Intl.DateTimeFormat('ka', …)` returns "November 5" in that browser where Node returns
+"5 ნოემბერი", so the tube-life date the server rendered and the one it hydrates with disagree —
+on those two pages only. A real visitor's Chrome has the full ICU and matches. Confirm before
+chasing it: `new Intl.DateTimeFormat('ka', { day: 'numeric', month: 'long' }).format(new
+Date())` in the same browser. `uk`, `en`, `pl`, `lv` and `lt` are unaffected, so a #418 there
+is real.
