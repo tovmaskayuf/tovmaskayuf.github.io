@@ -81,8 +81,11 @@ Verified 2026-09-04 against `essenta-pro` branch `claude/armenian-page-translati
 build date the tube-life estimate counts from. `npm run qa` passes — 24 pages, 193 links, 746
 assets.
 
-So `DEPLOY.md` §7's "🛑 STOP — the preview has DIVERGED" block **is out of date**; following it
-would send you back to hand-patching artefacts that no longer need it.
+**Which `DEPLOY.md` you are reading matters here.** On the final branch, §7's divergence block
+already reads "✅ RESOLVED — the preview is a build artefact of this repo again" and its deploy
+recipe is unblocked. **On `main` it does not**: that copy still carries the "🛑 STOP — the
+preview has DIVERGED" block, and following it would send you back to hand-patching artefacts
+that no longer need it.
 
 ⚠ **But none of that work is on `main`.** `essenta-pro`'s `main` is still `4290f01` (9 Aug) —
 three weeks behind, no `lv`/`lt`, the old where-to-buy dataset. Every approved change lives on
