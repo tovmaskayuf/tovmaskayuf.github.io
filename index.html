@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Light-only, same as every built page. This stub is visible for one frame before the
+         redirect fires — and for longer with JS off, where the link below is the way on — so
+         a phone inverting it is a flash of the wrong brand. See app/[locale]/layout.tsx. -->
+    <meta name="color-scheme" content="only light" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="0; url=/uk/" />
+    <link rel="canonical" href="/uk/" />
+    <title>Essenta PRO</title>
+    <script>
+      (function () {
+        var allowed = ["uk","en","hy","ka","pl","lv","lt"];
+        var target = 'uk';
+        try {
+          var saved = localStorage.getItem('NEXT_LOCALE');
+          if (saved && allowed.indexOf(saved) > -1) target = saved;
+        } catch (e) {}
+        location.replace('/' + target + '/');
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="/uk/">Continue to Essenta PRO</a>
+  </body>
+</html>
