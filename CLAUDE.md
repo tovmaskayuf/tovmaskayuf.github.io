@@ -33,6 +33,65 @@ and their absence is invisible here:
   takes all three because Open Sauce carries no Cyrillic, so a Ukrainian headline falls
   through to TT Norms mid-word.
 
+## ⚠ The site is LIVE at essentapro.com — and what is live is not this tree
+
+Since 2026-09-04 this build has a public sibling: <https://essentapro.com/>, which the client is
+using for in-store consultations and for advertising. Do not assume the two agree. They do not.
+
+`essentapro.com` serves preview commit `a21c11c` (18 Aug) — **the same build artefact, build id
+`lgjc2wkpPsM9rzU6UgvlW`**, so the "archive" that seeded it was a copy of this tree taken that
+day, not a build. It is eight commits behind. The symptom the client reported: the Ukrainian
+where-to-buy lists **54 logos where the current build lists 34** — all eight distributors, three
+foreign shops (Allegro, Dr. Max+, NuKo) and nine shops since deleted from the dataset (Antoshka,
+Auchan, Kasta, Parfums UA, Prostor, Varus, Eettinen Luksus, Magaziin, Sahver). Everything from
+`9cbcc56` on is absent there: the per-market filter, the owner's shop order, the signed Georgian
+and Armenian, `lv` and `lt`.
+
+### 🛑 Do not fix it by copying this tree onto that host — that is what caused it
+
+This is a PREVIEW build and it carries the preview's flags wherever it is copied:
+
+- `robots.txt` says `Disallow: /` and every page carries `noindex, nofollow`, so essentapro.com
+  is invisible to every search engine — on a domain bought to advertise from.
+- `canonical`, `og:url`, every `hreflang` and all of `sitemap.xml` name
+  `https://tovmaskayuf.github.io/…`. The real domain's share cards and canonical signals
+  currently point at the unindexed preview.
+
+Both are baked in at build time (source `DEPLOY.md` §2), so the only fix is a rebuild from source
+against the real origin — never a copy:
+
+```
+NEXT_PUBLIC_SITE_URL=https://essentapro.com npm run check
+# and NEXT_PUBLIC_ALLOW_INDEXING=true once the legal copy below has landed
+```
+
+⚠ **`npm ci` fails on the final source branch** — `package-lock.json` is out of sync with
+`package.json` (`@swc/helpers@0.5.23` missing). `npm install` builds fine. `DEPLOY.md` §1 still
+says `npm ci`.
+
+⚠ **`/uk/privacy/` and `/uk/cookie-policy/` are live on essentapro.com as English placeholders** —
+20 `TODO_LEGAL:` markers on the privacy page alone. That is equally true of THIS tree, so
+redeploying does not fix it and only the legal team's copy will. Turning indexing on before it
+lands publishes placeholder legal text under the brand's name.
+
+### The source leads, and a rebuild reproduces this tree exactly
+
+Verified 2026-09-04 against `essenta-pro` branch `claude/armenian-page-translations-ckefjr`
+(`cdbc75c`): 214 files, 181 byte-identical, the other 31 differing only in the build id and in the
+build date the tube-life estimate counts from. `npm run qa` passes — 24 pages, 193 links, 746
+assets.
+
+**Which `DEPLOY.md` you are reading matters here.** On the final branch, §7's divergence block
+already reads "✅ RESOLVED — the preview is a build artefact of this repo again" and its deploy
+recipe is unblocked. **On `main` it does not**: that copy still carries the "🛑 STOP — the
+preview has DIVERGED" block, and following it would send you back to hand-patching artefacts
+that no longer need it.
+
+⚠ **But none of that work is on `main`.** `essenta-pro`'s `main` is still `4290f01` (9 Aug) —
+three weeks behind, no `lv`/`lt`, the old where-to-buy dataset. Every approved change lives on
+unmerged `claude/*` branches, and anyone who builds from `main` gets something older than what is
+serving on essentapro.com today.
+
 ## To change the site
 
 Change the source repository and redeploy. The recipe is in its `DEPLOY.md` §7 — build against
