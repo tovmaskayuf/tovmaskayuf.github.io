@@ -65,9 +65,7 @@ NEXT_PUBLIC_SITE_URL=https://essentapro.com npm run check
 # and NEXT_PUBLIC_ALLOW_INDEXING=true once the legal copy below has landed
 ```
 
-⚠ **`npm ci` fails on the final source branch** — `package-lock.json` is out of sync with
-`package.json` (`@swc/helpers@0.5.23` missing). `npm install` builds fine. `DEPLOY.md` §1 still
-says `npm ci`.
+`npm ci` works again: the `@swc/helpers` lock-file fix is on `main` (2026-10-02).
 
 ⚠ **`/uk/privacy/` and `/uk/cookie-policy/` are live on essentapro.com as English placeholders** —
 20 `TODO_LEGAL:` markers on the privacy page alone. That is equally true of THIS tree, so
@@ -76,27 +74,16 @@ lands publishes placeholder legal text under the brand's name.
 
 ### The source leads, and a rebuild reproduces this tree exactly
 
-**Since 2026-10-02 this tree is built from `claude/moldova-and-retailer-updates` (`54dc8a5`)**, one
-commit on top of the branch named below: an eighth locale, `ro` — the Moldovan page, labelled
-"Moldova" in the switcher — plus the copy sheet's shop changes for PL (Dr. Max+ out, Rosa24 in,
-Jawa's logo) and LV (NuKo out, Drogas in). Build from that branch, not the one below, or those
-changes revert. Casamega and Drogas still have no logo: both sites refuse automated fetches.
+**Since 2026-10-02 this tree is built from `essenta-pro` `main` (`ea83892`, PR #4).** `main` had
+sat at `4290f01` (9 Aug) while every approved change lived on unmerged `claude/*` branches; PR #4
+fast-forwarded all of it, so **build from `main`** — the old branch names are history now. That
+merge also brought an eighth locale, `ro` (the Moldovan page, labelled "Moldova" in the switcher),
+and the copy sheet's shop changes for PL (Dr. Max+ out, Rosa24 in, Jawa's logo) and LV (NuKo out,
+Drogas in). Casamega and Drogas still have no logo: both sites refuse automated fetches.
 
-Verified 2026-09-04 against `essenta-pro` branch `claude/armenian-page-translations-ckefjr`
-(`cdbc75c`): 214 files, 181 byte-identical, the other 31 differing only in the build id and in the
-build date the tube-life estimate counts from. `npm run qa` passes — 24 pages, 193 links, 746
-assets.
-
-**Which `DEPLOY.md` you are reading matters here.** On the final branch, §7's divergence block
-already reads "✅ RESOLVED — the preview is a build artefact of this repo again" and its deploy
-recipe is unblocked. **On `main` it does not**: that copy still carries the "🛑 STOP — the
-preview has DIVERGED" block, and following it would send you back to hand-patching artefacts
-that no longer need it.
-
-⚠ **But none of that work is on `main`.** `essenta-pro`'s `main` is still `4290f01` (9 Aug) —
-three weeks behind, no `lv`/`lt`, the old where-to-buy dataset. Every approved change lives on
-unmerged `claude/*` branches, and anyone who builds from `main` gets something older than what is
-serving on essentapro.com today.
+`main`'s `DEPLOY.md` §7 now reads "✅ RESOLVED"; the old "🛑 STOP — the preview has DIVERGED" copy
+is gone with the stale `main`. `npm run check` passes against this origin — 27 pages, 220 links,
+846 assets — and the tree drives clean in headless Chromium at every width.
 
 ## To change the site
 
