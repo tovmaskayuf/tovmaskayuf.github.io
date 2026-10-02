@@ -38,14 +38,15 @@ and their absence is invisible here:
 Since 2026-09-04 this build has a public sibling: <https://essentapro.com/>, which the client is
 using for in-store consultations and for advertising. Do not assume the two agree. They do not.
 
-`essentapro.com` serves preview commit `a21c11c` (18 Aug) — **the same build artefact, build id
-`lgjc2wkpPsM9rzU6UgvlW`**, so the "archive" that seeded it was a copy of this tree taken that
-day, not a build. It is eight commits behind. The symptom the client reported: the Ukrainian
-where-to-buy lists **54 logos where the current build lists 34** — all eight distributors, three
-foreign shops (Allegro, Dr. Max+, NuKo) and nine shops since deleted from the dataset (Antoshka,
-Auchan, Kasta, Parfums UA, Prostor, Varus, Eettinen Luksus, Magaziin, Sahver). Everything from
-`9cbcc56` on is absent there: the per-market filter, the owner's shop order, the signed Georgian
-and Armenian, `lv` and `lt`.
+**Checked 2026-10-02: essentapro.com is now a proper build against its own origin** (build id
+`4HhrQJUVziAnZTx7_rr5n`, nginx): canonical, hreflang and the sitemap name `essentapro.com`, and the
+Ukrainian where-to-buy shows the current 34 logos. The 18 August copy described in earlier versions
+of this file (build id `lgjc2wkpPsM9rzU6UgvlW`, canonical pointing here) has been replaced.
+
+It is still BEHIND `main`: no `/ro/` (404), Dr. Max+ still on `pl`, NuKo still on `lv`. A build of
+`main` (`617045b`) against `https://essentapro.com` was produced on 2026-10-02 and handed to the
+owner to upload. Whoever runs that host deploys it; nothing in this repo reaches it. It is still
+`noindex` with `robots.txt` `Disallow: /` (correct until the legal copy below lands).
 
 ### 🛑 Do not fix it by copying this tree onto that host — that is what caused it
 
