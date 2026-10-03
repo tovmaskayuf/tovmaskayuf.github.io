@@ -43,10 +43,12 @@ using for in-store consultations and for advertising. Do not assume the two agre
 Ukrainian where-to-buy shows the current 34 logos. The 18 August copy described in earlier versions
 of this file (build id `lgjc2wkpPsM9rzU6UgvlW`, canonical pointing here) has been replaced.
 
-It is still BEHIND `main`: no `/ro/` (404), Dr. Max+ still on `pl`, NuKo still on `lv`. A build of
-`main` (`617045b`) against `https://essentapro.com` was produced on 2026-10-02 and handed to the
-owner to upload. Whoever runs that host deploys it; nothing in this repo reaches it. It is still
-`noindex` with `robots.txt` `Disallow: /` (correct until the legal copy below lands).
+It is still BEHIND `main` (re-checked 2026-10-03, same build id): no `/ro/` (404), Dr. Max+ still on
+`pl`, NuKo still on `lv`, no Varus on `uk`. A build of `main` against `https://essentapro.com` was
+handed to the owner to upload — first `617045b` (2026-10-02, site zip + two video zips), then a
+refreshed site zip from `e427f2a` (2026-10-03; the videos did not change). Whoever runs that host
+deploys it; nothing in this repo reaches it. It is still `noindex` with `robots.txt` `Disallow: /`
+(correct until the legal copy below lands).
 
 ### 🛑 Do not fix it by copying this tree onto that host — that is what caused it
 
@@ -80,7 +82,15 @@ sat at `4290f01` (9 Aug) while every approved change lived on unmerged `claude/*
 fast-forwarded all of it, so **build from `main`** — the old branch names are history now. That
 merge also brought an eighth locale, `ro` (the Moldovan page, labelled "Moldova" in the switcher),
 and the copy sheet's shop changes for PL (Dr. Max+ out, Rosa24 in, Jawa's logo) and LV (NuKo out,
-Drogas in). Casamega and Drogas still have no logo: both sites refuse automated fetches.
+Drogas in). PR #7 (2026-10-03) added the Casamega and Drogas logos marketing supplied, linked
+Casamega to `casamega.md/essenta/`, and brought VARUS back on `uk`. **Drogas has no link on purpose
+until 1 November 2026**, when the pastes go on sale there; marketing will send the page then.
+
+Two tools for the same client live OUTSIDE both repos, as claude.ai artifacts owned by the user: the
+giveaway randomizer (in the landing's design) and a private sales dashboard (sell-out uploads,
+per-store stock snapshots for Silpo by hand and Epicentr by pasted store list, price log, Excel
+export). Neither belongs on this public site: the dashboard holds sales data. Automatic Epicentr
+collection was deliberately NOT built — `api.epicentrk.ua/robots.txt` is `Disallow: /`.
 
 `main`'s `DEPLOY.md` §7 now reads "✅ RESOLVED"; the old "🛑 STOP — the preview has DIVERGED" copy
 is gone with the stale `main`. `npm run check` passes against this origin — 27 pages, 220 links,
