@@ -75,7 +75,7 @@ lands publishes placeholder legal text under the brand's name.
 
 ### The source leads, and a rebuild reproduces this tree exactly
 
-**Since 2026-10-02 this tree is built from `essenta-pro` `main` (`617045b`, PRs #4–#6).** `main` had
+**Since 2026-10-02 this tree is built from `essenta-pro` `main` (PRs #4–#7).** `main` had
 sat at `4290f01` (9 Aug) while every approved change lived on unmerged `claude/*` branches; PR #4
 fast-forwarded all of it, so **build from `main`** — the old branch names are history now. That
 merge also brought an eighth locale, `ro` (the Moldovan page, labelled "Moldova" in the switcher),
