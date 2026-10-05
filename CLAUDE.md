@@ -43,12 +43,13 @@ using for in-store consultations and for advertising. Do not assume the two agre
 Ukrainian where-to-buy shows the current 34 logos. The 18 August copy described in earlier versions
 of this file (build id `lgjc2wkpPsM9rzU6UgvlW`, canonical pointing here) has been replaced.
 
-It is still BEHIND `main` (re-checked 2026-10-03, same build id): no `/ro/` (404), Dr. Max+ still on
-`pl`, NuKo still on `lv`, no Varus on `uk`. A build of `main` against `https://essentapro.com` was
-handed to the owner to upload — first `617045b` (2026-10-02, site zip + two video zips), then a
-refreshed site zip from `e427f2a` (2026-10-03; the videos did not change). Whoever runs that host
-deploys it; nothing in this repo reaches it. It is still `noindex` with `robots.txt` `Disallow: /`
-(correct until the legal copy below lands).
+**Updated 2026-10-05 and verified: essentapro.com now serves the build of `main` @ `e427f2a`**
+(build id `cQv7250WmhXpaYP5gNXAa`, identical to the archive built for it): `/ro/` live, Rosa24 and
+Jawa on `pl`, Drogas on `lv`, Varus on `uk`, Casamega on `ro`, canonical on its own origin, all 104
+assets referenced by `uk`/`ro`/`pl`/`lv` load. The archive was handed over from the
+`essentapro-build` branch of this repo (a download branch only — Pages serves `main`). It is still
+`noindex` with `robots.txt` `Disallow: /` (correct until the legal copy below lands). Whoever runs
+that host deploys it; nothing in this repo reaches it, so the next change needs a new archive.
 
 ### 🛑 Do not fix it by copying this tree onto that host — that is what caused it
 
